@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# WeatherApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+WeatherApp is a simple React application that fetches and displays weather information for various cities. Users can search for weather details either by city name or by ZIP code with the country code. Additionally, it offers a dark mode toggle for a better user experience.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Display weather information for up to four cities.
+- Search for weather details by city name.
+- Search for weather details by ZIP code and country code.
+- Toggle between light and dark mode for better readability.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- Axios for API requests
+- OpenWeatherMap API for weather data
+- CSS for styling
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository:**
+    git clone https://github.com/yourusername/weatherapp.git
+    cd weatherapp
+    
 
-### `npm run build`
+2. **Install dependencies:**
+    npm install
+    
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Run the application:**
+    npm start
+ 
+4. **Compare Weather:**
+    You can compare the weather reports of up to four different cities simultaneously. Simply search for multiple cities by repeating the steps for searching by city name or ZIP code. The weather information for each city will be displayed, allowing you to make comparisons easily.   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Code Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `WeatherApp` Component
 
-### `npm run eject`
+This is the main component of the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **State Variables:**
+  - `city`: Stores the name of the city entered by the user.
+  - `cities`: An array of city names for which weather details are displayed.
+  - `data`: An array to hold weather data fetched from the API.
+  - `zip`: Stores the ZIP code entered by the user.
+  - `isDarkMode`: A boolean to toggle between light and dark modes.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Event Handlers:**
+  - `handleInput`: Updates the `city` state when the user types a city name.
+  - `handleInput1`: Updates the `zip` state when the user types a ZIP code.
+  - `handleSearch`: Fetches weather data for the city entered by the user.
+  - `handleSearch1`: Fetches weather data for the ZIP code entered by the user.
+  - `toggleTheme`: Toggles between light and dark mode.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Side Effects:**
+  - `useEffect` to fetch weather data when the component mounts or `cities` state changes.
+  - `useEffect` to apply the dark mode class to the `body` element when `isDarkMode` changes.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `Weather` Component
 
-## Learn More
+This component displays the weather information for a single city.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Props:**
+  - `result`: The weather data for a city.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Weather Data Displayed:**
+  - City name
+  - Feels like temperature in Celsius
+  - Current date and time adjusted for the city's timezone
+  - Humidity percentage
+  - Wind speed in meters per second
 
-### Code Splitting
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+WeatherApp uses the OpenWeatherMap API to fetch weather data.
 
-### Analyzing the Bundle Size
+- **Fetching Weather by City Name:**
+  - API endpoint: `https://api.openweathermap.org/data/2.5/weather`
+  - Query parameters: `q` (city name), `APPID` (API key)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Fetching Weather by ZIP Code:**
+  - API endpoint: `https://api.openweathermap.org/data/2.5/forecast`
+  - Query parameters: `zip` (ZIP code and country code), `appid` (API key)
 
-### Making a Progressive Web App
+## CSS Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `App.css`
 
-### Advanced Configuration
+This file contains the styles for the entire application, including light and dark mode styles.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Variables:**
+  - CSS variables for colors, background, text, etc., for both light and dark modes.
 
-### Deployment
+- **Classes:**
+  - `.app-container`: Styles for the main container.
+  - `.theme-toggle-container`: Styles for the dark mode toggle button container.
+  - `.theme-toggle`: Styles for the dark mode toggle button.
+  - `.country-input`, `.zip-input`: Styles for the input fields.
+  - `.search-button`: Styles for the search buttons.
+  - `.weather-cart`: Styles for the weather information container.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### `weather.css`
 
-### `npm run build` fails to minify
+This file contains styles specific to the `Weather` component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Classes:**
+  - `.city-cart`: Styles for the list displaying weather information.
+
+## Usage
+
+1. **Search by City Name:**
+   - Enter the city name in the input field.
+   - Click the `Search` button.
+   - The weather information for the city will be displayed if it is not already in the list.
+
+2. **Search by ZIP Code:**
+   - Enter the ZIP code and country code in the format `ZIP,COUNTRY_CODE` (e.g., `560103,IN`).
+   - Click the `Search` button.
+   - The weather information for the city corresponding to the ZIP code will be displayed if it is not already in the list.
+
+3. **Toggle Dark Mode:**
+   - Click the `Toggle Dark Mode` button to switch between light and dark modes.

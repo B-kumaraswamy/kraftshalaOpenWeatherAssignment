@@ -1,38 +1,168 @@
-.App {
-  text-align: center;
+:root {
+  --background-color: #f0f4f7;
+  --text-color: #333333;
+  --card-background: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --hover-shadow: rgba(0, 0, 0, 0.2);
+  --primary-color: #007BFF;
+  --primary-color-hover: #0056b3; /* Darken primary color for hover */
+  --temperature-color: #FF6347;
+  --date-color: #20B2AA;
+  --humidity-color: #FFA500;
+  --wind-speed-color: #4682B4;
+  --placeholder-color: #999999;
+  --toggle-button-background: #ffffff;
+  --toggle-button-text: #333333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --card-background: #1e1e1e;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --hover-shadow: rgba(0, 0, 0, 0.7);
+  --primary-color: #82aaff;
+  --primary-color-hover: #3c6eaf; /* Darken primary color for hover in dark mode */
+  --temperature-color: #ffab91;
+  --date-color: #80cbc4;
+  --humidity-color: #ffd54f;
+  --wind-speed-color: #90caf9;
+  --placeholder-color: #aaaaaa;
+  --toggle-button-background: #333333;
+  --toggle-button-text: #e0e0e0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Base Styles */
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 60px 20px; /* Increase top padding for better spacing */
+  background-color: var(--background-color);
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  position: relative;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: var(--card-background);
+}
+
+input[type="text"]::placeholder {
+  color: var(--placeholder-color);
+}
+
+.country-input, .zip-input {
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px; /* Add margin to separate from input */
 }
 
-.App-link {
-  color: #61dafb;
+.search-button:hover {
+  background-color: var(--primary-color-hover);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0; /* Increase margin for better spacing */
+  width: 100%;
+  max-width: 500px; /* Adjust max-width as needed */
+}
+
+.weather-cart {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px; /* Increase top margin for better spacing */
+}
+
+.theme-toggle-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.theme-toggle {
+  padding: 5px 10px;
+  background-color: var(--toggle-button-background);
+  color: var(--toggle-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.theme-toggle:hover {
+  background-color: var(--toggle-button-background);
+  filter: brightness(85%);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .search-button,
+  .theme-toggle {
+    width: auto;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 30px 15px; /* Increase top padding for better spacing */
+  }
+
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-button,
+  .theme-toggle {
+    width: 100%;
+    margin: 10px 0; /* Increase vertical margin for better spacing */
+  }
+
+  .weather-cart {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  input[type="text"] {
+    max-width: 100%;
+  }
+
+  .search-button,
+  .theme-toggle {
+    width: 100%;
+    margin: 10px 0; /* Increase vertical margin for better spacing */
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .weather-cart {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 }

@@ -6,13 +6,13 @@ import './App.css';
 
 function WeatherApp() {
   const [city, setCity] = useState("");
-  const [cities, setCities] = useState(["New York", "London", "Delhi", "Bangalore"]);
+  const [cities, setCities] = useState(["new york", "london", "delhi", "bengaluru"]);
   const [data, setData] = useState([]);
   const [zip, setZip] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleInput = (event) => {
-      const city_name = event.target.value;
+      const city_name = event.target.value.trim();
       setCity(city_name.toLowerCase());
         
   };

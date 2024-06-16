@@ -32,7 +32,6 @@ body.dark-mode {
   --toggle-button-text: #e0e0e0;
 }
 
-
 /* Base Styles */
 .app-container {
   display: flex;
@@ -111,6 +110,7 @@ input[type="text"]::placeholder {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  margin-right: 10px; /* Add margin to separate from input */
 }
 
 .theme-toggle:hover {
@@ -132,6 +132,8 @@ input[type="text"]::placeholder {
   }
 
   .search-section {
+    flex-direction: column;
+    align-items: stretch;
     flex-direction: column;
     align-items: stretch;
   }
